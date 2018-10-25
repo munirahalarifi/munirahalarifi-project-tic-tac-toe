@@ -1,0 +1,32 @@
+---
+title: "Coding"
+output: pdf_document
+---
+
+
+```{r}
+
+
+flag <- array(9,0)
+
+win_set <- data.frame(c(1,2,3),c(4,5,6),c(7,8,9),c(1,4,7),c(2,5,8),c(3,6,9),c(1,5,9),c(3,5,7))
+
+flag[sample(1:9,1)]=1
+
+
+rand_strategy <- function(){
+  flag <- rep(0,9)
+  players <- matrix(data=0,nrow = 5,ncol = 2)
+  for(i in 1:9){
+    play <- sample(1:9,1)
+    while(flag[play]==1){
+      play <- sample(1:9,1)
+    }
+    players[((i-1)/2+1),ifelse((i%%2)==1,1,2)] = play;
+    flag[play]=1;
+  }
+  players
+}
+
+```
+
