@@ -1,0 +1,36 @@
+---
+title: "rand vs strategy"
+output: pdf_document
+---
+
+```{r}
+
+strategy_player_1 <- function(){
+  flag <- rep(0,9)
+  code <- 0
+  players <- matrix(data=0,nrow = 5,ncol = 2)
+  for(i in 1:9){
+    if(i%%2 == 0 | i==9){    #setting plaer 2 to Play randomly, and the stage 9 or the ninth index since no one can win.
+      #player 2 going for random choice
+      play <- sample(1:9,1)
+      while(flag[play]==1){
+        play <- sample(1:9,1)
+      }  
+    }else{
+      #player 1
+      play <- strategy_move_p1(players,i) #setting player one to play by specific stratagy depends where the second player will choose the spot in the cornar ar in the middle
+    }
+    players[((i-1)/2+1),ifelse((i%%2)==1,1,2)] = play;
+    flag[play]=1;
+    if(i>4){
+      result <- check_win(players,i)
+      if(result$code != 0){
+        return(result)
+      }
+    }
+  }
+  return(result)
+}
+
+```
+
