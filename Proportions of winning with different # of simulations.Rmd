@@ -1,0 +1,102 @@
+---
+title: "Untitled"
+output: pdf_document
+---
+
+```{r}
+library(purrr)
+```
+
+```{r}
+win_set <- matrix(c(1,2,3,4,5,6,7,8,9,1,4,7,2,5,8,3,6,9,1,5,9,3,5,7),   #matrix of all possible winning 
+                  byrow = F,nrow = 3)
+
+
+rand_strategy <- function(){
+  #creating the flag of 9 spots to check whether the spot is occupied or not
+  flag <- rep(0,9)
+  code <- 0
+  players <- matrix(data=0,nrow = 5,ncol = 2) 
+  for(i in 1:9){
+    play <- sample(1:9,1)         
+    while(flag[play]==1){
+      play <- sample(1:9,1)
+    }
+    players[((i-1)/2+1),ifelse((i%%2)==1,1,2)] = play;
+    flag[play]=1;
+    if(i>4){
+      result <- check_win(players,i)
+      if(result$code != 0){
+        return(result)
+      }
+    }
+  }
+  return(result)
+}
+
+
+
+check_win <-function(players,ind){
+  code <- 0
+  ifelse(ind%%2==1,index <- 1,index <- 2)
+  player_i <- sort(players[,index])
+  player_i <- player_i[! player_i %in% c(0)]
+  player_i_matrix <- combn(player_i,3)
+  if(length(player_i) == 3){
+    player_i_matrix <- matrix(player_i,ncol = 1)
+  }
+  for(i in 1:dim(win_set)[2]){
+    for(j in 1:dim(player_i_matrix)[2]){
+      match_vector <- match(win_set[,i],player_i_matrix[,j])
+      if(any(is.na(match_vector)) == FALSE){
+        ifelse(ind%%2==1,code <- 1,code <- -1)
+        return(data.frame(code=code,index=ind))
+      }
+    }
+  }
+  return(data.frame(code=code,index=ind))
+}
+
+##############################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+win_rate <- rerun(100,rand_strategy())
+win_matrix_100 <- data.frame(matrix(unlist(win_rate), nrow=100, byrow=T))
+(t <- table(win_matrix_100))
+rate100 <- rowSums(t)[3]/sum(rowSums(t))
+win_rate <- rerun(1000,rand_strategy())
+win_matrix_1000 <- data.frame(matrix(unlist(win_rate), nrow=1000, byrow=T))
+(t <- table(win_matrix_1000))
+rate1000 <- rowSums(t)[3]/sum(rowSums(t))
+win_rate <- rerun(10000,rand_strategy())
+win_matrix_10000 <- data.frame(matrix(unlist(win_rate), nrow=10000, byrow=T))
+(t <- table(win_matrix_10000))
+rate10000 <- rowSums(t)[3]/sum(rowSums(t))
+
+
+
+win_matrix <- data.frame(matrix(unlist(win_rate), nrow=1000, byrow=T))
+names(win_matrix) <- c('result','index')
+
+table(win_matrix[which(win_matrix$result==1),]$index)
+table(win_matrix$result)
+
+hist(win_matrix[which(win_matrix$result==1),]$index)
+hist(win_matrix[which(win_matrix$result==-1),]$index)
+ 
+```
+
