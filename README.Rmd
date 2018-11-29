@@ -2,33 +2,19 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+Tic Tac Toe simulation.
+description of the project:
+I simulated the game of Tic Tac Toe in R to see what the proportion of wins and draws would be when both players play randomly, and when one player is playing with a strategy and when the other player is playing randomly. 
+link to the final code: in github
+https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/Final%20project%20coding.Rmd
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-# project
+link to the final code: in Rstudio cloud:
+https://rstudio.cloud/spaces/4116/project/109335
 
-The goal of project is to ...
+link to the written report:
+https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/TIC%20TAC%20TOE%20Report...pdf
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+link to the slides:
+https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/PCS%20Presentation.pdf
 
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
-
-
-.....
+I used three packages (combinat), (purrr), and (tidyverse)
