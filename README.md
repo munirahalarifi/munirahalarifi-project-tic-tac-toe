@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 Tic Tac Toe simulation. description of the project: I simulated the game
 of Tic Tac Toe in R to see what the proportion of wins and draws would
@@ -9,8 +14,8 @@ final code: Rmarmdown
 link to the final code: pdf
 <https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/Final%20project%20coding.pdf>
 
-link to the written report:
-<https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/TIC%20TAC%20TOE%20Report>…pdf
+link to the written report: 
+<https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/TIC%20TAC%20TOE%20Report...pdf>
 
 link to the slides:
 <https://github.com/ST541-Fall2018/munirahalarifi-project-tic-tac-toe/blob/master/PCS%20Presentation.pdf>
